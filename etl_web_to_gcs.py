@@ -55,7 +55,7 @@ def write_gcs(path: Path) -> None:
     return
 
 
-@flow()
+@flow(log_prints=True)
 def etl_web_to_gcs(color : str, year: int, month: int) -> None:
     """The main ETL function"""
     # color = "green"
