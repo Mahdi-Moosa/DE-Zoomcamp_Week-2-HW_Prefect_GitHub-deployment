@@ -3,6 +3,7 @@ import pandas as pd
 from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
 from random import randint
+from datetime import datetime
 
 
 @task(retries=3)
@@ -67,6 +68,7 @@ def etl_web_to_gcs(color : str, year: int, month: int) -> None:
     df_clean = clean(df)
     path = write_local(df_clean, color, dataset_file)
     write_gcs(path)
+    print(f'This is a flow download test. \nCurrent time of run is: {datetime.now()} as per google virtual machine.')
 
 @flow()
 def etl_parent_flow(months: list[int], year: int, color: str):
